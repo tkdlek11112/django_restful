@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<script type="text/javascript" src="/static/jquery-3.2.1.min.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+.chat_wrap {display:none;width: 350px;height: 500px;position: fixed;bottom: 30px;right: 95px;background: #a9bdce;}
+.chat_content {height: 600px;width: 500px;overflow-y:scroll;padding:10px 15px;background: cornflowerblue}
+.chat_input {padding:2px 5px;}
+.chat_header {padding: 10px 15px;border-bottom: 1px solid #95a6b4;}
+.chat_header .close_btn {border: none;background: none;float: right;}
+.send_btn {;border: 1px solid #666;background: #ffeb33;height: 28px;color: #0a0a0a;}
+.msg_box:after {content: '';display: block;clear:both;}
+.msg_box > span {padding: 3px 5px;word-break: break-all;display: block;max-width: 300px;margin-bottom: 10px;border-radius: 4px}
+.msg_box.send > span {background:#ffeb33;float: right;}
+.msg_box.receive > span {background:#fff;float: left;}
+</style>
+<body>
+<div class="chat_header">
+    <span>FAQ 챗봇</span>
+    <button type="button" id="close_chat_btn" class="close_btn">X</button>
+</div>
+<div id="divbox" class="chat_content"></div>
+<form id="form" style="display: inline">
+    <input type="text" name="input1" class="chat_input" id="input1" size="74" style="display: inline; width: 460px" />
+    <input type="button" value="전송" id="btn_submit" class="send_btn" style="display: inline;width: 40px"  />
+</form>
+<script>
+    $('#btn_submit').click(function () {
+        send();
+    });
+    $('#form').on('submit', function(e){
+       e.preventDefault();
+       send();
+    });
+    $('#close_chat_btn').on('click', function(){
+        $('#chat_wrap').hide().empty();
+    });
+    function send(){
+        $('#divbox').append('<div class="msg_box send"><span>'+$('#input1').val()+'<span></div>');
+        $("#divbox").scrollTop($("#divbox")[0].scrollHeight);
+        console.log("serial"+$('form').serialize())
+        $.ajax({
+            url:  'http://127.0.0.1:8000/chat_service/',
+            type: 'post',
+            dataType: 'json',
+            data: $('form').serialize(),
+            success: function(data) {
+                <!--$('#reponse').html(data.reponse);-->
+                $('#divbox').append('<div class="msg_box receive"><span>'+ data.response +'<span></div>');
+                $("#divbox").scrollTop($("#divbox")[0].scrollHeight);
+            }
+        });
+        $('#input1').val('');
+    }
+</script>
+</body>
+</html>

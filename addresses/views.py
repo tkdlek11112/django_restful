@@ -6,11 +6,10 @@ from .serializers import AddressesSerializer
 from rest_framework.parsers import JSONParser
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
+import json
 
 
 # Create your views here.
-
-
 @csrf_exempt
 def address_list(request):
     if request.method == 'GET':
@@ -71,3 +70,32 @@ def login(request):
 
     return render(request, 'addresses/login.html')
 
+@csrf_exempt
+def app_login(request):
+
+    if request.method == 'POST':
+        print("리퀘스트 로그" + str(request.body))
+        id = request.POST.get('userid', '')
+        pw = request.POST.get('userpw', '')
+        print("id = " + id + " pw = " + pw)
+
+        result = authenticate(username=id, password=pw)
+
+        if result:
+            print("로그인 성공!")
+            return JsonResponse({'code': '0000', 'msg': '로그인성공입니다.'}, status=200)
+        else:
+            print("실패")
+            return JsonResponse({'code': '1001', 'msg': '로그인실패입니다.'}, status=200)
+
+
+@csrf_exempt
+def chat_service(request):
+    if request.method == 'POST':
+        input1 = request.POST['input1']
+        print(input1)
+        output = dict()
+        output['response'] = "이건 응답"
+        return HttpResponse(json.dumps(output), status=200)
+    else:
+        return render(request, 'addresses/chat_t:wqest.html')

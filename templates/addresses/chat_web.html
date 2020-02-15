@@ -1,10 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+<div class="chat_header">
+    <span>테스트 뉴스 전송</span>
+    <button type="button" id="close_chat_btn" class="close_btn">X</button>
+</div>
+<div id="divbox" class="chat_content"></div>
+<form id="form">
+{#        {% csrf_token %}#}
+    <input type="text" name="input1" class="chat_input" id="input1" size="74"/>
+    <!-- <input type="text" name="input2" /> -->
+    <!-- <input type="submit" name="전송" /> -->
+    <input type="button" value="전송" id="btn_submit" class="send_btn" />
+</form>
+<script>
+    $('#btn_submit').click(function () {
+        send();
+    });
+    $('#form').on('submit', function(e){
+       e.preventDefault();
+       send();
+    });
+    $('#close_chat_btn').on('click', function(){
+        $('#chat_wrap').hide().empty();
+    });
+    function send(){
+        $('#divbox').append('<div class="msg_box send"><span>'+$('#input1').val()+'<span></div>');
+        $("#divbox").scrollTop($("#divbox")[0].scrollHeight);
+{#        console.log("serial"+$('form').serialize())#}
+        $.ajax({
+            url:  'http://127.0.0.1:8000/web_news/',
+            type: 'post',
+            dataType: 'json',
+            data: $('form').serialize(),
+            success: function(data) {
+                <!--$('#reponse').html(data.reponse);-->
+                $('#divbox').append('<div class="msg_box receive"><span>'+data.reponse+'<span></div>');
+                $("#divbox").scrollTop($("#divbox")[0].scrollHeight);
+            }
+        });
+        $('#input1').val('');
+    }
+</script>

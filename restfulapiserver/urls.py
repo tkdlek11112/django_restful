@@ -8,6 +8,9 @@ urlpatterns = [
     path('addresses/', views.address_list),
     path('addresses/<int:pk>/', views.address),
     path('login/', views.login),
+    path('app_login/', views.app_login),
     path('admin/', admin.site.urls),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('chat_service/', views.chat_service),
+
 ]

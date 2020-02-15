@@ -24,32 +24,26 @@
     <autoscroll-from-editor value="true" />
     <show-object-properties value="true" />
     <loaded-nodes>
-      <connection connection-id="d31836b5-a536-40d2-85a7-5b75ec3a5ad5">
-        <schema name="main" object-types="dataset trigger, table, column, constraint, index" />
+      <connection connection-id="792a18f9-4da3-44f5-b674-afcc87a3a3ea">
+        <schema name="main" object-types="view, table" />
       </connection>
     </loaded-nodes>
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="792a18f9-4da3-44f5-b674-afcc87a3a3ea">
-      <console name="Connection" type="STANDARD" schema="main" session="Main">select * from Tables;</console>
-    </connection>
-    <connection id="d31836b5-a536-40d2-85a7-5b75ec3a5ad5">
-      <console name="Connection 1" type="STANDARD" schema="main" session="Main">select  * from addresses_addresses;</console>
+      <console name="Connection" type="STANDARD" schema="main" session="Main">select * from auth_user;</console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files>
-      <object connection-id="d31836b5-a536-40d2-85a7-5b75ec3a5ad5" object-ref="schemas/main/tables/addresses_addresses" />
-    </open-files>
+    <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="792a18f9-4da3-44f5-b674-afcc87a3a3ea" />
-    <connection id="d31836b5-a536-40d2-85a7-5b75ec3a5ad5" />
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
-    <filter-actions connection-id="d31836b5-a536-40d2-85a7-5b75ec3a5ad5" dataset="main.addresses_addresses" active-filter-id="EMPTY_FILTER">
-      <filter id="9b5d19d0-ea11-4bf4-871e-f5677f3213fd" name="1" temporary="false" custom-name="false" type="basic" join-type="AND">
-        <condition column="id" operator="=" value="1" active="true" />
+    <filter-actions connection-id="792a18f9-4da3-44f5-b674-afcc87a3a3ea" dataset="main.auth_group" active-filter-id="15f1eabb-887c-4ddb-a2e4-a7db373a8d18">
+      <filter id="15f1eabb-887c-4ddb-a2e4-a7db373a8d18" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND">
+        <condition column="id" operator="=" value="" active="true" />
       </filter>
     </filter-actions>
   </component>
@@ -93,93 +87,7 @@
           <port value="1234" />
           <database value="database" />
           <files>
-            <file path="sqlite.db" schema="main" />
-          </files>
-          <type value="NONE" />
-          <user value="" />
-          <deprecated-pwd value="" />
-        </database>
-        <properties>
-          <auto-commit value="false" />
-        </properties>
-        <ssh-settings>
-          <active value="false" />
-          <proxy-host value="" />
-          <proxy-port value="22" />
-          <proxy-user value="" />
-          <deprecated-proxy-pwd value="" />
-          <auth-type value="PASSWORD" />
-          <key-file value="" />
-          <key-passphrase value="" />
-        </ssh-settings>
-        <ssl-settings>
-          <active value="false" />
-          <certificate-authority-file value="" />
-          <client-certificate-file value="" />
-          <client-key-file value="" />
-        </ssl-settings>
-        <details>
-          <charset value="UTF-8" />
-          <session-management value="true" />
-          <ddl-file-binding value="true" />
-          <database-logging value="false" />
-          <connect-automatically value="true" />
-          <restore-workspace value="true" />
-          <restore-workspace-deep value="true" />
-          <environment-type value="default" />
-          <idle-time-to-disconnect value="30" />
-          <idle-time-to-disconnect-pool value="5" />
-          <credential-expiry-time value="10" />
-          <max-connection-pool-size value="7" />
-          <alternative-statement-delimiter value="" />
-        </details>
-        <object-filters hide-empty-schemas="false" hide-pseudo-columns="false">
-          <object-type-filter use-master-settings="true">
-            <object-type name="SCHEMA" enabled="true" />
-            <object-type name="USER" enabled="true" />
-            <object-type name="ROLE" enabled="true" />
-            <object-type name="PRIVILEGE" enabled="true" />
-            <object-type name="CHARSET" enabled="true" />
-            <object-type name="TABLE" enabled="true" />
-            <object-type name="VIEW" enabled="true" />
-            <object-type name="MATERIALIZED_VIEW" enabled="true" />
-            <object-type name="NESTED_TABLE" enabled="true" />
-            <object-type name="COLUMN" enabled="true" />
-            <object-type name="INDEX" enabled="true" />
-            <object-type name="CONSTRAINT" enabled="true" />
-            <object-type name="DATASET_TRIGGER" enabled="true" />
-            <object-type name="DATABASE_TRIGGER" enabled="true" />
-            <object-type name="SYNONYM" enabled="true" />
-            <object-type name="SEQUENCE" enabled="true" />
-            <object-type name="PROCEDURE" enabled="true" />
-            <object-type name="FUNCTION" enabled="true" />
-            <object-type name="PACKAGE" enabled="true" />
-            <object-type name="TYPE" enabled="true" />
-            <object-type name="TYPE_ATTRIBUTE" enabled="true" />
-            <object-type name="ARGUMENT" enabled="true" />
-            <object-type name="DIMENSION" enabled="true" />
-            <object-type name="CLUSTER" enabled="true" />
-            <object-type name="DBLINK" enabled="true" />
-          </object-type-filter>
-          <object-name-filters />
-        </object-filters>
-      </connection>
-      <connection id="d31836b5-a536-40d2-85a7-5b75ec3a5ad5" active="true">
-        <database>
-          <name value="Connection 1" />
-          <description value="" />
-          <database-type value="SQLITE" />
-          <config-type value="BASIC" />
-          <database-version value="3.23" />
-          <driver-source value="BUILTIN" />
-          <driver-library value="" />
-          <driver value="" />
-          <url-type value="FILE" />
-          <host value="localhost" />
-          <port value="1234" />
-          <database value="database" />
-          <files>
-            <file path="C:\Users\cho\PycharmProjects\restfulapiserver\db.sqlite3" schema="main" />
+            <file path="C:\Users\tkdle\Documents\PycharmProjects\django_restful\db.sqlite3" schema="main" />
           </files>
           <type value="NONE" />
           <user value="" />

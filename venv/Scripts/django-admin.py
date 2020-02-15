@@ -1,4 +1,4 @@
-#!C:\Users\cho\PycharmProjects\restfulapiserver\venv\Scripts\python.exe
+#!C:\Users\tkdle\Documents\PycharmProjects\django_restful\venv\Scripts\python.exe
 from django.core import management
 
 if __name__ == "__main__":

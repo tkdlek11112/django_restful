@@ -6,7 +6,7 @@ from django.core.exceptions import ImproperlyConfigured, ObjectDoesNotExist
 from django.db.models import Manager
 from django.db.models.query import QuerySet
 from django.urls import NoReverseMatch, Resolver404, get_script_prefix, resolve
-from django.utils.encoding import smart_text, uri_to_iri
+from django.utils.encoding import smart_str, uri_to_iri
 from django.utils.translation import gettext_lazy as _
 
 from rest_framework.fields import (
@@ -46,13 +46,13 @@ class Hyperlink(str):
     We use this for hyperlinked URLs that may render as a named link
     in some contexts, or render as a plain URL in others.
     """
-    def __new__(self, url, obj):
-        ret = str.__new__(self, url)
+    def __new__(cls, url, obj):
+        ret = super().__new__(cls, url)
         ret.obj = obj
         return ret
 
     def __getnewargs__(self):
-        return(str(self), self.name,)
+        return (str(self), self.name)
 
     @property
     def name(self):
@@ -344,7 +344,7 @@ class HyperlinkedRelatedField(RelatedField):
             if data.startswith(prefix):
                 data = '/' + data[len(prefix):]
 
-        data = uri_to_iri(data)
+        data = uri_to_iri(parse.unquote(data))
 
         try:
             match = resolve(data)
@@ -452,7 +452,7 @@ class SlugRelatedField(RelatedField):
         try:
             return self.get_queryset().get(**{self.slug_field: data})
         except ObjectDoesNotExist:
-            self.fail('does_not_exist', slug_name=self.slug_field, value=smart_text(data))
+            self.fail('does_not_exist', slug_name=self.slug_field, value=smart_str(data))
         except (TypeError, ValueError):
             self.fail('invalid')
 
